@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using VsProductManagerWebApi.Data;
 using VsProductManagerWebApi.Domain;
@@ -47,7 +46,7 @@ public class ProductsController : ControllerBase
 
         // DTO - Data Transfer Object
 
-        IEnumerable<ProductDto> productDtos = products.Select(x => new ProductDto
+           IEnumerable<ProductDto> productDtos = products.Select(x => new ProductDto
         {
             Id = x.Id,
             ProductName = x.ProductName,
@@ -170,8 +169,6 @@ public class ProductsController : ControllerBase
 
         context.Products.Remove(product);
 
-        // Detta skickar en SQL DELETE till databashanteraren
-        // T.ex: "DELETE FROM Vehicle WHERE Sku = 123456"
         context.SaveChanges();
 
         return NoContent(); // 204 No Content
